@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePostCountsTable extends Migration
+class CreatePostCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreatePostCountsTable extends Migration
      */
     public function up()
     {
-        Schema::create('post_counts', function (Blueprint $table) {
+        Schema::create('post_categories', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('post_id');
-            $table->integer('seen_count');
-            $table->integer('comment_count');
+            $table->string('name');
+            $table->string('description');
             $table->integer('status');
             $table->timestamps();
         });
@@ -30,6 +29,6 @@ class CreatePostCountsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('post_counts');
+        Schema::dropIfExists('post_categories');
     }
 }

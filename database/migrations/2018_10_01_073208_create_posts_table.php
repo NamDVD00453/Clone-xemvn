@@ -15,13 +15,22 @@ class CreatePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('type');
             $table->string('title');
-            $table->string('thumbnail')->nullable();
-            $table->string('content')->nullable();
-            $table->string('img_url')->nullable();
-            $table->string('video_url')->nullable();
-            $table->string('source');
-            $table->integer('created_by');
+            $table->string('description');
+            $table->string('handle_url');
+            $table->string('thumbnail');
+            $table->integer('thumbnail_width');
+            $table->integer('thumbnail_height');
+            $table->string('content');
+            $table->string('content_width');
+            $table->string('content_height');
+            $table->string('duration');
+            $table->string('source')->nullable();
+            $table->integer('seen_count')->default(0);
+            $table->integer('comment_count')->default(0);
+            $table->integer('category_id')->nullable();
+            $table->integer('created_by')->nullable();
             $table->integer('status');
             $table->timestamps();
         });
