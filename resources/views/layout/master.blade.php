@@ -26,5 +26,7 @@
 
 {{--@include('includes.script')--}}
 
+@yield('script')
+
 </body>
 </html>

@@ -15,8 +15,9 @@ use \Illuminate\Support\Facades\Route;
 //Route::get('/', function () {
 //    return view('index.home');
 //});
-Route::get('/', 'TestController@index');
-Route::get('/cuoc-song-ma', function () {
-    return view('index.item');
-});
+Route::get('/', 'PostController@index');
+Route::get('/home', 'PostController@index');
+Route::get('/videos', 'PostController@loadVideos');
+Route::get('/videos/{handle_url}', 'PostController@loadSingleVideo');
+Route::get('/new/{handle_url}', 'PostController@loadSingleImage');
 
