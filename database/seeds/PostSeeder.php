@@ -30,23 +30,23 @@ class PostSeeder extends Seeder
                         Storage::disk('local')->put('public/'.$item->videoContentId.'.mp4', $file);
                     }
 
-                    DB::table('posts')->insert([
-                        'title' => preg_replace('~[^\\pL\d]+~u',' ',$item->title),
-                        'type' => 1,
-                        'description' => preg_replace('~[^\\pL\d]+~u',' ',$item->description),
-                        'handle_url' => str_random(10),
-                        'thumbnail' => $item->avatarUrl,
-                        'thumbnail_width' => $item->avatarWidth,
-                        'thumbnail_height' => $item->avatarHeight,
-                        'content' => 'http://localhost:8000/storage/'.$item->videoContentId.'.mp4',
-                        'content_width' => $item->body[0]->width,
-                        'content_height' => $item->body[0]->height,
-                        'duration' => $item->body[0]->duration,
-                        'source' => 'Collect',
-                        'seen_count' => 0,
-                        'comment_count' => 0,
-                        'status' => 1,
-                    ]);
+                    $post = new \App\Post();
+                    $post->title = preg_replace('~[^\\pL\d]+~u',' ',$item->title);
+                    $post->type = 1;
+                    $post->description = preg_replace('~[^\\pL\d]+~u',' ',$item->description);
+                    $post->handle_url = str_random(10);
+                    $post->thumbnail = $item->avatarUrl;
+                    $post->thumbnail_width = $item->avatarWidth;
+                    $post->thumbnail_height = $item->avatarHeight;
+                    $post->content = 'http://localhost:8000/storage/'.$item->videoContentId.'.mp4';
+                    $post->content_width = $item->body[0]->width;
+                    $post->content_height = $item->body[0]->height;
+                    $post->duration = $item->body[0]->duration;
+                    $post->source = 'Collect';
+                    $post->seen_count = 0;
+                    $post->comment_count = 0;
+                    $post->status = 1;
+                    $post->save();
                 } catch (Exception $e) {
                     continue;
                 }
@@ -58,23 +58,23 @@ class PostSeeder extends Seeder
 
         foreach ($content as $item) {
             try {
-                DB::table('posts')->insert([
-                    'title' => preg_replace('~[^\\pL\d]+~u',' ',$item->title),
-                    'type' => 2,
-                    'description' => preg_replace('~[^\\pL\d]+~u',' ',$item->title),
-                    'handle_url' => str_random(10),
-                    'thumbnail' => $item->img,
-                    'thumbnail_width' => 400,
-                    'thumbnail_height' => 400,
-                    'content' => preg_replace('/\b-400.jpg\b/','-650.jpg', $item->img),
-                    'content_width' => 650,
-                    'content_height' => 650,
-                    'duration' => 0,
-                    'source' => 'Collect',
-                    'seen_count' => 0,
-                    'comment_count' => 0,
-                    'status' => 1,
-                ]);
+                $post = new \App\Post();
+                $post->title = preg_replace('~[^\\pL\d]+~u',' ',$item->title);
+                $post->type = 2;
+                $post->description = preg_replace('~[^\\pL\d]+~u',' ',$item->description);
+                $post->handle_url = str_random(10);
+                $post->thumbnail = $item->img;
+                $post->thumbnail_width = 400;
+                $post->thumbnail_height = 400;
+                $post->content = preg_replace('/\b-400.jpg\b/','-650.jpg', $item->img);
+                $post->content_width = 650;
+                $post->content_height = 650;
+                $post->duration = 0;
+                $post->source = 'Collect';
+                $post->seen_count = 0;
+                $post->comment_count = 0;
+                $post->status = 1;
+                $post->save();
             } catch (Exception $e) {
                 continue;
             }
