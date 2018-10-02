@@ -23,7 +23,7 @@
                             <a href="videos/{{$item -> handle_url}}">
                                 <h5 class="card-title text-dark">{{$item -> title}}</h5>
                             </a>
-                            <h6 class="text-black-50">Đăng bởi: Admin - 1 giờ trước.</h6>
+                            <h6 class="text-black-50">Đăng bởi: Admin - {{$item -> created_at}}.</h6>
                             <div class="row">
                                 <div class="col-2">
                                 <span>
