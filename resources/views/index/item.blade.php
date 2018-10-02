@@ -54,6 +54,31 @@
 
                 <hr>
 
+                <div class="row">
+                    <div class="card w-100">
+                        <div class="card-body" style="background: rgba(0,0,0,.03)">
+                            <h5 class="card-title">Video mới</h5>
+                            <div class="row">
+                                @foreach($newPost as $ni)
+                                    <div class="col-md-3 col-sm-4 mt-2">
+                                        <a href="/videos/{{$ni -> handle_url}}" class="thumbnail-url" title="{{$ni->title}}">
+                                            <img src="{{$ni -> thumbnail}}" class="w-100" alt="{{$ni->title}}">
+                                            <p class="limit-text">{{$ni -> title}}</p>
+                                            <span>
+                                                <i class=""></i>
+                                            </span>
+                                        </a>
+                                    </div>
+                                @endforeach
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-2">
+                    <button type="button" class="btn btn-primary btn-lg btn-block btn-sm">Xem thêm</button>
+                </div>
                 {{--End Content Item--}}
 
             </div>
@@ -71,4 +96,8 @@
         </div>
     </div>
 
+@stop
+
+@section('script')
+    <link rel="stylesheet" href="/css/item.css">
 @stop

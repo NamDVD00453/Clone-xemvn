@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 use App\Post;
-use App\TestContent;
 
 class PostController extends Controller
 {
@@ -24,7 +23,8 @@ class PostController extends Controller
     public function loadSingleVideo($handle_url)
     {
         $SingleVideo = Post::where('handle_url', $handle_url)->firstOrFail();
-        return view('index.item')->with(["post" => $SingleVideo]);
+        $newItems = Post::where('type', 1)->orderBy('id', 'DESC')->paginate(8);
+        return view('index.item')->with(["post" => $SingleVideo, "newPost" => $newItems]);
     }
 
     public function loadSingleImage($handle_url)
@@ -36,8 +36,6 @@ class PostController extends Controller
 
         $backItem = Post::where('id', $thisId-1)->firstOrFail();
         $nextItem = Post::where('id', $thisId+1)->firstOrFail();
-
-
 
         return view('index.image')->with(
             [
