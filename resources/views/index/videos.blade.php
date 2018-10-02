@@ -7,8 +7,6 @@
 
             <div class="col-lg-9">
 
-                {{ $listContent->links() }}
-
                 @foreach($listContent as $key =>$item)
 
                     {{--Content Item--}}

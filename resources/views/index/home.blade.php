@@ -14,14 +14,14 @@
                 <div class="row">
 
                     <div class="col-lg-7">
-                        <a class="card mt-4" href="/cuoc-song-ma">
-                            <img class="card-img-top img-fluid" src="{{$item -> imgUrl}}" alt="" >
+                        <a class="card mt-4" href="/new/{{$item -> handle_url}}">
+                            <img class="card-img-top img-fluid" src="{{$item -> thumbnail}}" alt="" >
                         </a>
                     </div>
 
                     <div class="col-lg-5">
                         <div class="card-body">
-                            <a href="/cuoc-song-ma">
+                            <a href="/new/{{$item -> handle_url}}">
                                 <h5 class="card-title">{{$item -> title}}</h5>
                             </a>
                             <h6>Publish from: 01/01/2018</h6>
@@ -36,8 +36,10 @@
 
                 @endforeach
 
+                {{ $listContent->links() }}
+
                 <div class="row">
-                    <a class="btn btn-primary btn-lg btn-block text-white">Want more? Click here</a>
+                    <a class="btn btn-primary btn-lg btn-block text-white" id="next" >Want more? Click here</a>
                 </div>
 
 
@@ -56,5 +58,18 @@
             <!-- /.col-lg-3 -->
         </div>
     </div>
+
+@stop
+
+@section('script')
+
+<script>
+    (
+        function() {
+            console.log(document.querySelector('.pagination > li:last-child > a'));
+        document.getElementById('next').href =  document.querySelector('.pagination  > li:last-child > a').href;
+        }
+    )();
+</script>
 
 @stop
