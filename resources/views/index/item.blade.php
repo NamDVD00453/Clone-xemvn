@@ -9,7 +9,7 @@
 
                 {{--Content Item--}}
                 <div class="row mt-5">
-                    <h5 class="card-title">Cuộc sống mà 😂</h5>
+                    <h5 class="card-title">{{$post -> title}}</h5>
                 </div>
 
                 <div class="row" style="background-color: #eee; padding-top: 10px">
@@ -28,7 +28,12 @@
 
                 <div class="row">
 
-                    <img class="mx-auto mt-4" src="https://i-xem.mkocdn.com/i.xem.sb/data/photo/2018/09/30/049/cuoc-song-ma-1538279899-650.jpg" alt="" >
+                    <video width="1000" height="480" controls class="mt-4" autoplay>
+                        <source src="{{$post -> content}}" type="video/mp4">
+                        Your browser does not support HTML5 video.
+                    </video>
+
+                    {{--<img class="mx-auto mt-4" src="{{$post -> thumbnail}}" alt="" >--}}
 
                     {{--<div class="col-lg-7">--}}
                         {{--<a class="card mt-4" href="/cuoc-song-ma">--}}

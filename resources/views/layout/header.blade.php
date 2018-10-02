@@ -12,13 +12,13 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
+                    <a class="nav-link" href="/home">New</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Services</a>
+                    <a class="nav-link" href="/videos">Video</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
+                    <a class="nav-link" href="/hot">Hot</a>
                 </li>
             </ul>
         </div>

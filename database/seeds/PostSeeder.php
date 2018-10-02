@@ -35,7 +35,7 @@ class PostSeeder extends Seeder
                     'thumbnail' => $item->avatarUrl,
                     'thumbnail_width' => $item->avatarWidth,
                     'thumbnail_height' => $item->avatarHeight,
-                    'content' => 'localhost:8000/storage/'.$item->videoContentId.'.mp4',
+                    'content' => 'http://localhost:8000/storage/'.$item->videoContentId.'.mp4',
                     'content_width' => $item->body[0]->width,
                     'content_height' => $item->body[0]->height,
                     'duration' => $item->body[0]->duration,
