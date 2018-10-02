@@ -1,0 +1,30 @@
+.thumblink {
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+}
+.playIcon {
+    background: url(https://s-xem.mkocdn.com/bundles/mkoxem/images/play_icon.png) no-repeat 0 0;
+    width: 86px;
+    height: 60px;
+    display: inline-block;
+}
+.playIcon:hover {
+    background: url(https://s-xem.mkocdn.com/bundles/mkoxem/images/play_icon.png) no-repeat 0 -60px;
+}
+.thumbImg {
+    height: 100%;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.thumb-view {
+    position: relative;
+    overflow: hidden;
+}

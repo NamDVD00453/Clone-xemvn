@@ -33,6 +33,7 @@
                         Your browser does not support HTML5 video.
                     </video>
 
+
                     {{--<img class="mx-auto mt-4" src="{{$post -> thumbnail}}" alt="" >--}}
 
                     {{--<div class="col-lg-7">--}}

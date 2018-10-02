@@ -23,8 +23,10 @@ class PostController extends Controller
 
     public function loadSingleVideo($handle_url)
     {
-        $SingleVideo = Post::where('handle_url', $handle_url)->firstOrFail();
-        return view('index.item')->with(["post" => $SingleVideo]);
+        $SingleVideo = Post::where('handle_url', $handle_url);
+        $VideoItem = $SingleVideo->firstOrFail();
+        $VideoItem->increment('seen_count', 1);
+        return view('index.item')->with(["post" => $VideoItem]);
     }
 
     public function loadSingleImage($handle_url)
