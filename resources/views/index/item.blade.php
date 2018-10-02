@@ -33,24 +33,6 @@
                         Your browser does not support HTML5 video.
                     </video>
 
-
-                    {{--<img class="mx-auto mt-4" src="{{$post -> thumbnail}}" alt="" >--}}
-
-                    {{--<div class="col-lg-7">--}}
-                        {{--<a class="card mt-4" href="/cuoc-song-ma">--}}
-                            {{--<img class="card-img-top img-fluid" src="https://i-xem.mkocdn.com/i.xem.sb/data/photo/2018/09/30/049/cuoc-song-ma-1538279899-650.jpg" alt="" >--}}
-                        {{--</a>--}}
-                    {{--</div>--}}
-
-                    {{--<div class="col-lg-5">--}}
-                        {{--<div class="card-body">--}}
-                            {{--<a href="/cuoc-song-ma">--}}
-                                {{--<h5 class="card-title">Cuộc sống mà 😂</h5>--}}
-                            {{--</a>--}}
-                            {{--<h6>Publish from: 01/01/2018</h6>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-
                 </div>
 
                 <hr>
@@ -59,26 +41,15 @@
                     <div class="card w-100">
                         <div class="card-body" style="background: rgba(0,0,0,.03)">
                             <h5 class="card-title">Video mới</h5>
-                            <div class="row">
-                                @foreach($newPost as $ni)
-                                    <div class="col-md-3 col-sm-4 mt-2">
-                                        <a href="/videos/{{$ni -> handle_url}}" class="thumbnail-url" title="{{$ni->title}}">
-                                            <img src="{{$ni -> thumbnail}}" class="w-100" alt="{{$ni->title}}">
-                                            <p class="limit-text">{{$ni -> title}}</p>
-                                            <span>
-                                                <i class=""></i>
-                                            </span>
-                                        </a>
-                                    </div>
-                                @endforeach
-
+                            <div class="row" id="new-post">
+                                @include('index.newpost-component')
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="row mt-2">
-                    <button type="button" class="btn btn-primary btn-lg btn-block btn-sm">Xem thêm</button>
+                    <button type="button" id="get-more-post" class="btn btn-primary btn-lg btn-block btn-sm">Xem thêm</button>
                 </div>
                 {{--End Content Item--}}
 
@@ -101,4 +72,26 @@
 
 @section('script')
     <link rel="stylesheet" href="/css/item.css">
+    <script>
+        (function () {
+            var page = 1;
+            var url = '/videos/more-content';
+            document.getElementById('get-more-post').onclick = function () {
+                var req = new XMLHttpRequest();
+                req.open('GET', url + '?page=' + ++page);
+                req.onloadend = function() {
+                    if ([200, 304, 201].includes(this.status)) {
+                        console.log(this.responseText);
+                        document.getElementById('new-post').innerHTML += this.responseText;
+                    } else {
+                        console.log(this.status);
+                    }
+                };
+                req.onerror = function (e) {
+                    console.log(e);
+                };
+                req.send();
+            };
+        })();
+    </script>
 @stop

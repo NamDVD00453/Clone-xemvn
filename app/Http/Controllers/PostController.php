@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 use App\Post;
-use App\TestContent;
 
 class PostController extends Controller
 {
@@ -17,19 +16,21 @@ class PostController extends Controller
     public function loadVideos()
     {
         return view('index.videos')->with([
-            "listContent" => Post::where('type', 1)->paginate(5)
+            "listContent" => Post::where('type', 1)->orderBy('id', 'DESC')->paginate(5)
         ]);
     }
 
     public function loadSingleVideo($handle_url)
     {
-        $SingleVideo = Post::where('handle_url', $handle_url);
-        $VideoItem = $SingleVideo->firstOrFail();
+        $VideoItem = Post::where('handle_url', $handle_url)->firstOrFail();
         $VideoItem->increment('seen_count', 1);
-        return view('index.item')->with(["post" => $VideoItem]);
-        $SingleVideo = Post::where('handle_url', $handle_url)->firstOrFail();
         $newItems = Post::where('type', 1)->orderBy('id', 'DESC')->paginate(8);
-        return view('index.item')->with(["post" => $SingleVideo, "newPost" => $newItems]);
+        return view('index.item')->with(["post" => $VideoItem, "newPost" => $newItems]);
+    }
+
+    public function loadNewVideoComponent() {
+        $newItems = Post::where('type', 1)->orderBy('id', 'DESC')->paginate(8);
+        return view('index.newpost-component')->with(["newPost" => $newItems]);
     }
 
     public function loadSingleImage($handle_url)
@@ -52,4 +53,6 @@ class PostController extends Controller
             ]
         );
     }
+
+
 }
