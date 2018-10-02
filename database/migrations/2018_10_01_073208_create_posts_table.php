@@ -22,7 +22,7 @@ class CreatePostsTable extends Migration
             $table->string('thumbnail', 500);
             $table->integer('thumbnail_width');
             $table->integer('thumbnail_height');
-            $table->string('content', 500);
+            $table->string('content', 500)->unique();
             $table->integer('content_width');
             $table->integer('content_height');
             $table->string('duration');

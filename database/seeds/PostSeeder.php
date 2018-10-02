@@ -24,27 +24,32 @@ class PostSeeder extends Seeder
             $res = $client->get($url);
             $content = json_decode($res->getBody())->data;
             foreach ($content as $item) {
-                $file = file_get_contents(end($item->body[0]->mediaUrl->mp4));
-                Storage::disk('local')->put('public/'.$item->videoContentId.'.mp4', $file);
+                try {
+                    $file = file_get_contents(end($item->body[0]->mediaUrl->mp4));
+                    if (!Storage::disk('local')->exists('public/\'.$item->videoContentId.\'.mp4\'')) {
+                        Storage::disk('local')->put('public/'.$item->videoContentId.'.mp4', $file);
+                    }
 
-                DB::table('posts')->insert([
-                    'title' => preg_replace('~[^\\pL\d]+~u',' ',$item->title),
-                    'type' => 1,
-                    'description' => preg_replace('~[^\\pL\d]+~u',' ',$item->description),
-                    'handle_url' => str_random(10),
-                    'thumbnail' => $item->avatarUrl,
-                    'thumbnail_width' => $item->avatarWidth,
-                    'thumbnail_height' => $item->avatarHeight,
-                    'content' => 'http://localhost:8000/storage/'.$item->videoContentId.'.mp4',
-                    'content_width' => $item->body[0]->width,
-                    'content_height' => $item->body[0]->height,
-                    'duration' => $item->body[0]->duration,
-                    'source' => 'Collect',
-                    'seen_count' => 0,
-                    'comment_count' => 0,
-                    'status' => 1,
-                ]);
-
+                    DB::table('posts')->insert([
+                        'title' => preg_replace('~[^\\pL\d]+~u',' ',$item->title),
+                        'type' => 1,
+                        'description' => preg_replace('~[^\\pL\d]+~u',' ',$item->description),
+                        'handle_url' => str_random(10),
+                        'thumbnail' => $item->avatarUrl,
+                        'thumbnail_width' => $item->avatarWidth,
+                        'thumbnail_height' => $item->avatarHeight,
+                        'content' => 'http://localhost:8000/storage/'.$item->videoContentId.'.mp4',
+                        'content_width' => $item->body[0]->width,
+                        'content_height' => $item->body[0]->height,
+                        'duration' => $item->body[0]->duration,
+                        'source' => 'Collect',
+                        'seen_count' => 0,
+                        'comment_count' => 0,
+                        'status' => 1,
+                    ]);
+                } catch (Exception $e) {
+                    continue;
+                }
             }
         }
 
@@ -52,23 +57,27 @@ class PostSeeder extends Seeder
         $content = json_decode($res->getBody());
 
         foreach ($content as $item) {
-            DB::table('posts')->insert([
-                'title' => preg_replace('~[^\\pL\d]+~u',' ',$item->title),
-                'type' => 2,
-                'description' => preg_replace('~[^\\pL\d]+~u',' ',$item->title),
-                'handle_url' => str_random(10),
-                'thumbnail' => $item->img,
-                'thumbnail_width' => 400,
-                'thumbnail_height' => 400,
-                'content' => preg_replace('/\b-400.jpg\b/','-650.jpg', $item->img),
-                'content_width' => 650,
-                'content_height' => 650,
-                'duration' => 0,
-                'source' => 'Collect',
-                'seen_count' => 0,
-                'comment_count' => 0,
-                'status' => 1,
-            ]);
+            try {
+                DB::table('posts')->insert([
+                    'title' => preg_replace('~[^\\pL\d]+~u',' ',$item->title),
+                    'type' => 2,
+                    'description' => preg_replace('~[^\\pL\d]+~u',' ',$item->title),
+                    'handle_url' => str_random(10),
+                    'thumbnail' => $item->img,
+                    'thumbnail_width' => 400,
+                    'thumbnail_height' => 400,
+                    'content' => preg_replace('/\b-400.jpg\b/','-650.jpg', $item->img),
+                    'content_width' => 650,
+                    'content_height' => 650,
+                    'duration' => 0,
+                    'source' => 'Collect',
+                    'seen_count' => 0,
+                    'comment_count' => 0,
+                    'status' => 1,
+                ]);
+            } catch (Exception $e) {
+                continue;
+            }
         }
     }
 }
