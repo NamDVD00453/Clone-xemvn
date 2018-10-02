@@ -13,5 +13,10 @@
 use \Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index.home');
 });
+Route::get('/home', 'TestController@index');
+Route::get('/cuoc-song-ma', function () {
+    return view('index.item');
+});
+
