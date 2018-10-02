@@ -61,7 +61,7 @@ class PostSeeder extends Seeder
                 $post = new \App\Post();
                 $post->title = preg_replace('~[^\\pL\d]+~u',' ',$item->title);
                 $post->type = 2;
-                $post->description = preg_replace('~[^\\pL\d]+~u',' ',$item->description);
+                $post->description = preg_replace('~[^\\pL\d]+~u',' ',$item->title);
                 $post->handle_url = str_random(10);
                 $post->thumbnail = $item->img;
                 $post->thumbnail_width = 400;
