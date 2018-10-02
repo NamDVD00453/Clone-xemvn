@@ -1,0 +1,22 @@
+.limit-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 15px;        /* fallback */
+    max-height: 30px;       /* fallback */
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: none!important;
+}
+
+.thumbnail-url {
+    font-weight: bold;
+    font-size: 14px;
+}
+.thumbnail-url:hover {
+    color: #cb1c6b;
+}
