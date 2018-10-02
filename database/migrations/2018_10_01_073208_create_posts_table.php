@@ -19,12 +19,12 @@ class CreatePostsTable extends Migration
             $table->string('title');
             $table->string('description');
             $table->string('handle_url');
-            $table->string('thumbnail');
+            $table->string('thumbnail', 500);
             $table->integer('thumbnail_width');
             $table->integer('thumbnail_height');
-            $table->string('content');
-            $table->string('content_width');
-            $table->string('content_height');
+            $table->string('content', 500);
+            $table->integer('content_width');
+            $table->integer('content_height');
             $table->string('duration');
             $table->string('source')->nullable();
             $table->integer('seen_count')->default(0);

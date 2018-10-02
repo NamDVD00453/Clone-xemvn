@@ -47,5 +47,28 @@ class PostSeeder extends Seeder
 
             }
         }
+
+        $res = $client->get('https://xemvn-parser-api.herokuapp.com/');
+        $content = json_decode($res->getBody());
+
+        foreach ($content as $item) {
+            DB::table('posts')->insert([
+                'title' => preg_replace('~[^\\pL\d]+~u',' ',$item->title),
+                'type' => 2,
+                'description' => preg_replace('~[^\\pL\d]+~u',' ',$item->title),
+                'handle_url' => str_random(10),
+                'thumbnail' => $item->img,
+                'thumbnail_width' => 400,
+                'thumbnail_height' => 400,
+                'content' => preg_replace('/\b-400.jpg\b/','-650.jpg', $item->img),
+                'content_width' => 650,
+                'content_height' => 650,
+                'duration' => 0,
+                'source' => 'Collect',
+                'seen_count' => 0,
+                'comment_count' => 0,
+                'status' => 1,
+            ]);
+        }
     }
 }
