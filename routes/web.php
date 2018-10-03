@@ -15,9 +15,21 @@ use \Illuminate\Support\Facades\Route;
 //Route::get('/', function () {
 //    return view('index.home');
 //});
-Route::get('/', 'PostController@index');
-Route::get('/home', 'PostController@index');
-Route::get('/videos', 'PostController@loadVideos');
-Route::get('/videos/more-content', 'PostController@loadNewVideoComponent');
-Route::get('/videos/{handle_url}', 'PostController@loadSingleVideo')->middleware('load_suggest_post');
-Route::get('/new/{handle_url}', 'PostController@loadSingleImage')->middleware('load_suggest_post');
+
+Route::group(['prefix' => 'videos'], function () {
+    Route::get('/', 'VideosController@index')->name('videos.index');
+    Route::get('/more-content', 'VideosController@loadNewVideoComponent')->name('videos.more_content');
+    Route::get('/old', 'VideosController@old')->name('videos.old');
+    Route::get('/hot', 'VideosController@hot')->name('videos.hot');
+    Route::get('/{handle_url}', 'VideosController@singleVideo')
+        ->middleware('load_suggest_post')
+        ->name('videos.single');
+});
+
+Route::group(['prefix' => '/'], function() {
+    Route::get('/', 'PostController@index')->name('index');
+    Route::get('/old', 'IndexController@old')->name('index.old');
+    Route::get('/hot', 'IndexController@hot')->name('index.hot');
+    Route::get('/{handle_url}', 'IndexController@singleImage')->name('index.single');
+});
+
