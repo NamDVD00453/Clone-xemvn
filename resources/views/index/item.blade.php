@@ -31,11 +31,17 @@
                     </div>
 
 
-                    <div class="col-1">
-                        <h6>Back</h6>
+                    <div class="col-2">
+                        <a class="ml-5" href="/videos/{{$backUrl}}">
+                            <i class="fas fa-angle-left"></i>
+                            Back
+                        </a>
                     </div>
-                    <div class="col-1">
-                        <h6>Next</h6>
+                    <div class="col-2">
+                        <a href="/videos/{{$nextUrl}}">
+                            Next
+                            <i class="fas fa-angle-right"></i>
+                        </a>
                     </div>
 
                 </div>

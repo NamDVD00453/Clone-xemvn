@@ -13,6 +13,10 @@
                     </div>
                 </div>
 
+                <div class="tips card-header-pills mt-4">
+                    Hãy chia sẻ video tới bạn bè.
+                </div>
+
                 @foreach($listContent as $key =>$item)
 
                     {{--Content Item--}}

@@ -22,10 +22,19 @@ class PostController extends Controller
 
     public function loadSingleVideo($handle_url)
     {
-        $VideoItem = Post::where('handle_url', $handle_url)->firstOrFail();
-        $VideoItem->increment('seen_count', 1);
+        $VideoItems = Post::where('handle_url', $handle_url);
+        $VideoItems->increment('seen_count', 1);
+        $VideoItem = $VideoItems->firstOrFail();
+        $thisId = $VideoItem->id;
         $newItems = Post::where('type', 1)->orderBy('id', 'DESC')->paginate(8);
-        return view('index.item')->with(["post" => $VideoItem, "newPost" => $newItems]);
+        $backItem = Post::where('id', $thisId-1)->firstOrFail();
+        $nextItem = Post::where('id', $thisId+1)->firstOrFail();
+        return view('index.item')->with([
+            "post" => $VideoItem,
+            "newPost" => $newItems,
+            "backUrl" => $backItem->handle_url,
+            "nextUrl" => $nextItem->handle_url
+        ]);
     }
 
     public function loadNewVideoComponent() {
@@ -54,5 +63,29 @@ class PostController extends Controller
         );
     }
 
+//    public function loadItem($handle_url)
+//    {
+//
+//        $CurrentItems = Post::where('handle_url', $handle_url);
+//        $CurrentItems->increment('seen_count', 1);
+//
+//        $CurrentItem = $CurrentItems->firstOrFail();
+//        $thisType = $CurrentItem->type;
+//
+//        $thisId = $CurrentItem->id;
+//
+//        $backItem = Post::where('id', $thisId-1)->firstOrFail();
+//        $nextItem = Post::where('id', $thisId+1)->firstOrFail();
+//
+//        $newItems = Post::where('type', 1)->orderBy('id', 'DESC')->paginate(8);
+//
+//        return view('index.item')->with([
+//            "post" => $CurrentItems,
+//            "newPost" => $newItems,
+//            "next" => $nextItem,
+//            "back" => $backItem
+//        ]);
+//
+//    }
 
 }

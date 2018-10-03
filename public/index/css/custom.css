@@ -28,3 +28,13 @@
     position: relative;
     overflow: hidden;
 }
+
+div.tips {
+    background: #FF9;
+    border: 1px solid #E6DB55;
+    padding: 6px 10px;
+    text-shadow: 0 1px white;
+    font-size: 12px;
+    display: block;
+    min-height: 15px;
+}
