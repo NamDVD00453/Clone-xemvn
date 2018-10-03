@@ -68,16 +68,26 @@
 
 
                     <div class="col-2">
-                        <a class="ml-5" href="/new/{{$backUrl}}">
+                        @if($backUrl != null)
+                        <a class="ml-5" href="/{{$backUrl -> handle_url}}">
                             <i class="fas fa-angle-left"></i>
                             Back
                         </a>
+                        @else
+                            <i class="fas fa-angle-left"></i>
+                            Back
+                        @endif
                     </div>
                     <div class="col-2">
-                        <a href="/new/{{$nextUrl}}">
+                        @if($nextUrl != null)
+                        <a href="/{{$nextUrl -> handle_url}}">
                             Next
                             <i class="fas fa-angle-right"></i>
                         </a>
+                        @else
+                            Next
+                            <i class="fas fa-angle-right"></i>
+                        @endif
                     </div>
 
                 </div>
@@ -99,7 +109,7 @@
                         <div class="card-body" style="background: rgba(0,0,0,.03)">
                             <h5 class="card-title">Ảnh mới</h5>
                             <div class="row" id="new-post">
-                                @include('index.newpost-component')
+                                @include('index.new-image-component')
                             </div>
                         </div>
                     </div>

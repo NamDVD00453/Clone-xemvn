@@ -32,18 +32,27 @@
                              data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
                     </div>
 
-
                     <div class="col-2">
-                        <a class="ml-5" href="/videos/{{$backUrl}}">
+                        @if($backUrl != null)
+                            <a class="ml-5" href="/videos/{{$backUrl -> handle_url}}">
+                                <i class="fas fa-angle-left"></i>
+                                Back
+                            </a>
+                        @else
                             <i class="fas fa-angle-left"></i>
                             Back
-                        </a>
+                        @endif
                     </div>
                     <div class="col-2">
-                        <a href="/videos/{{$nextUrl}}">
+                        @if($nextUrl != null)
+                            <a href="/videos/{{$nextUrl -> handle_url}}">
+                                Next
+                                <i class="fas fa-angle-right"></i>
+                            </a>
+                        @else
                             Next
                             <i class="fas fa-angle-right"></i>
-                        </a>
+                        @endif
                     </div>
 
                 </div>
@@ -79,7 +88,6 @@
                     </button>
                 </div>
                 {{--End Content Item--}}
-
 
             </div>
             <!-- /.col-lg-9 -->

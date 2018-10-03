@@ -21,13 +21,13 @@ class VideosController extends Controller
         $VideoItem = $VideoItems->firstOrFail();
         $thisId = $VideoItem->id;
         $newItems = Post::where('type', 1)->orderBy('id', 'DESC')->paginate(8);
-        $backItem = Post::where('id', $thisId-1)->firstOrFail();
-        $nextItem = Post::where('id', $thisId+1)->firstOrFail();
+        $backItem = Post::where('id', $thisId-1)->first();
+        $nextItem = Post::where('id', $thisId+1)->first();
         return view('videos.single-item')->with([
             "post" => $VideoItem,
             "newPost" => $newItems,
-            "backUrl" => $backItem->handle_url,
-            "nextUrl" => $nextItem->handle_url
+            "backUrl" => $backItem,
+            "nextUrl" => $nextItem
         ]);
     }
 

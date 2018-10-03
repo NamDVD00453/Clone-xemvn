@@ -24,7 +24,7 @@
     <div class="card-body" style="background: rgba(0,0,0,.03)">
         <h5 class="card-title">Ảnh mới</h5>
         @foreach($suggestNewImg as $sni)
-            <a href="{{'/new/'.$sni->handle_url}}" class="suggest-tab-anchor">
+            <a href="{{'/'.$sni->handle_url}}" class="suggest-tab-anchor">
                 <div class="row mt-2">
                     <div class="col-5">
                         <img src="{{$sni->thumbnail}}" class="w-100 suggest-tab-thumb" alt="{{$sni->title}}">
@@ -73,11 +73,8 @@
                 @case(1)
                     @php $collection_url = 'videos'; @endphp
                     @break
-                @case(2)
-                    @php $collection_url = 'new'; @endphp
-                    @break
                 @default
-                    @php $collection_url = 'new'; @endphp
+                    @php $collection_url = ''; @endphp
                     @break
             @endswitch
             <a href="{{'/'.$collection_url.'/'.$sr->handle_url}}" class="suggest-tab-anchor">
