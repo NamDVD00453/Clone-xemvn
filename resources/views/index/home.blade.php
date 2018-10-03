@@ -21,19 +21,31 @@
 
                     <div class="col-lg-5">
                         <div class="card-body">
-                            <a href="/new/{{$item -> handle_url}}">
-                                <h5 class="card-title">{{$item -> title}}</h5>
+                            {{--<a href="/new/{{$item -> handle_url}}">--}}
+                                {{--<h5 class="card-title">{{$item -> title}}</h5>--}}
+                            {{--</a>--}}
+                            {{--<h6>Publish from: 01/01/2018</h6>--}}
+                            <a href="new/{{$item -> handle_url}}">
+                                <h5>{{$item -> title}}</h5>
                             </a>
-                            <h6>Publish from: 01/01/2018</h6>
+                            <h6 class="text-black-50">Đăng bởi: Admin.</h6>
+                            <p>{{$item -> created_at}}</p>
+                            <div class="row">
+                                <div class="col-3">
+                                    <i class="fas fa-eye"> {{$item -> seen_count}}</i>
+                                </div>
+                                <div class="col-3">
+                                    <i class="fas fa-comment"> {{$item -> comment_count}}</i>
+                                </div>
+                                <div class="col-6">
+                                    <div class="fb-like" data-href="new/{{$item -> handle_url}}" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-
                 </div>
-
                 <hr>
-
                 {{--End Content Item--}}
-
                 @endforeach
 
                 {{ $listContent->links() }}
@@ -58,7 +70,7 @@
             <!-- /.col-lg-3 -->
         </div>
     </div>
-
+    <div id="fb-root"></div>
 @stop
 
 @section('script')
@@ -70,6 +82,14 @@
         document.getElementById('next').href =  document.querySelector('.pagination  > li:last-child > a').href;
         }
     )();
+
+    (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v3.1';
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
 </script>
 
 @stop

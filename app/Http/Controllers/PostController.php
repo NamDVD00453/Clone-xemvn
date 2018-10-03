@@ -49,12 +49,15 @@ class PostController extends Controller
         $SingleImage1 = $SingleImage->firstOrFail();
         $thisId = $SingleImage1->id;
 
+        $newItems = Post::where('type', 2)->orderBy('id', 'DESC')->paginate(8);
+
         $backItem = Post::where('id', $thisId-1)->firstOrFail();
         $nextItem = Post::where('id', $thisId+1)->firstOrFail();
 
         return view('index.image')->with(
             [
                 "post" => $SingleImage1,
+                "newPost" => $newItems,
                 "backUrl" => $backItem->handle_url,
                 "nextUrl" => $nextItem->handle_url
             ]
