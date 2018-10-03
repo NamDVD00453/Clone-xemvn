@@ -52,8 +52,6 @@ class PostController extends Controller
         $backItem = Post::where('id', $thisId-1)->firstOrFail();
         $nextItem = Post::where('id', $thisId+1)->firstOrFail();
 
-
-
         return view('index.image')->with(
             [
                 "post" => $SingleImage1,
