@@ -29,18 +29,19 @@
                             </a>
                             <h6 class="text-black-50">Đăng bởi: Admin - {{$item -> created_at}}.</h6>
                             <div class="row">
-                                <div class="col-2">
-                                <span>
-                                    <i class="fas fa-eye"></i>
-                                    {{$item -> seen_count}}
-                                </span>
-                                    <span class="ml-4">
-                                    <i class="fas fa-comment"></i>
-                                        {{$item -> comment_count}}
-                                </span>
+                                <div class="col-3">
+                                    <div class="row">
+                                        <div class="col">
+                                            <i class="fas fa-eye"> {{$item -> seen_count}}</i>
 
+                                        </div>
+                                        <div class="col">
+                                            <i class="fas fa-comment"> {{$item -> comment_count}}</i>
+
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-10">
+                                <div class="col-7">
                                     <div class="fb-like" data-href="videos/{{$item -> handle_url}}" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
                                 </div>
                             </div>

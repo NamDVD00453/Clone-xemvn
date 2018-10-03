@@ -16,7 +16,7 @@ class PostController extends Controller
     public function loadVideos()
     {
         return view('index.videos')->with([
-            "listContent" => Post::where('type', 1)->orderBy('id', 'DESC')->paginate(5)
+            "listContent" => Post::where('type', 1)->paginate(5)
         ]);
     }
 

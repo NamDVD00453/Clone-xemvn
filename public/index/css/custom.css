@@ -38,3 +38,14 @@ div.tips {
     display: block;
     min-height: 15px;
 }
+.number {
+    font-size: 16px;
+    color: #BA0069;
+    font-weight: bolder;
+}
+.row.nav-custom {
+    background-color: #eee;
+    height: 45px;
+    padding-top: 10px;
+    margin-top: 10px;
+}

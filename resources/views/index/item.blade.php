@@ -9,22 +9,24 @@
 
                 {{--Content Item--}}
                 <div class="row mt-5">
-                    <h5 class="card-title">{{$post -> title}}</h5>
+                    <h5 class="card-title font-weight-bold">{{$post -> title}}</h5>
                 </div>
                 <div class="row">
-                    <div class="col-2">
+                    <div class="col-6">
                         <span>
                             <i class="fas fa-eye"></i>
-                            {{$post -> seen_count}}
+                            <b>Lượt xem: </b>
+                            <span class="number">{{$post -> seen_count}}</span>
                         </span>
                         <span class="ml-4">
                             <i class="fas fa-comment"></i>
-                            {{$post -> comment_count}}
+                            <b>Lượt bình luận: </b>
+                            <span class="number">{{$post -> comment_count}}</span>
                         </span>
                     </div>
                 </div>
 
-                <div class="row" style="background-color: #eee">
+                <div class="row nav-custom">
                     <div class="col-8">
                         <div class="fb-like" data-href="videos/{{$post -> handle_url}}" data-layout="button_count"
                              data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
