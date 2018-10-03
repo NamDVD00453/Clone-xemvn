@@ -6,18 +6,21 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home
-                        <span class="sr-only">(current)</span>
-                    </a>
+                {{--<li class="nav-item active">--}}
+                    {{--<a class="nav-link" href="#">Home--}}
+                        {{--<span class="sr-only">(current)</span>--}}
+                    {{--</a>--}}
+                {{--</li>--}}
+                <li class="nav-item {{Route::is('index') ? 'active' : ''}}">
+                    <a class="nav-link" href="/">Mới</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/home">New</a>
+                <li class="nav-item {{Route::is('index.old') ? 'active' : ''}}">
+                    <a class="nav-link" href="/old">Cũ</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/videos">Video</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item {{Route::is('index.hot') ? 'active' : ''}}">
                     <a class="nav-link" href="/hot">Hot</a>
                 </li>
             </ul>

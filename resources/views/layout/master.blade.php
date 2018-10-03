@@ -10,8 +10,12 @@
 
 <!-- TOP HEADER Start
     ================================================== -->
+@if(Route::is('index.*') || Route::is('index'))
+    @include('layout.header')
+@else
+    @include('layout.videos-header')
+@endif
 
-@include('layout.header')
 
 
 @yield('content')

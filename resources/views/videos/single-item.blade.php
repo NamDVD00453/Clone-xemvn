@@ -68,7 +68,7 @@
                         <div class="card-body" style="background: rgba(0,0,0,.03)">
                             <h5 class="card-title">Video mới</h5>
                             <div class="row" id="new-post">
-                                @include('index.newpost-component')
+                                @include('videos.new-video-component')
                             </div>
                         </div>
                     </div>
