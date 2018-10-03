@@ -57,12 +57,7 @@
             <!-- /.col-lg-9 -->
 
             <div class="col-lg-3">
-                <h1 class="my-4">List link</h1>
-                <div class="list-group">
-                    <a href="#" class="list-group-item active">Link 1</a>
-                    <a href="#" class="list-group-item">Link 1</a>
-                    <a href="#" class="list-group-item">Link 1</a>
-                </div>
+                @include('index.suggest-post-component')
             </div>
             <!-- /.col-lg-3 -->
         </div>

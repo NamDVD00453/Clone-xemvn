@@ -4,9 +4,9 @@
             <img src="{{$ni -> thumbnail}}" class="w-100" alt="{{$ni->title}}">
             <p class="limit-text">{{$ni -> title}}</p>
             <span>
-                                                <i class="fas fa-eye"></i>
+                <i class="fas fa-eye"></i>
                 {{$ni -> seen_count}}
-                                            </span>
+            </span>
         </a>
     </div>
 @endforeach

@@ -19,5 +19,5 @@ Route::get('/', 'PostController@index');
 Route::get('/home', 'PostController@index');
 Route::get('/videos', 'PostController@loadVideos');
 Route::get('/videos/more-content', 'PostController@loadNewVideoComponent');
-Route::get('/videos/{handle_url}', 'PostController@loadSingleVideo');
+Route::get('/videos/{handle_url}', 'PostController@loadSingleVideo')->middleware('load_suggest_post');
 Route::get('/new/{handle_url}', 'PostController@loadSingleImage');
